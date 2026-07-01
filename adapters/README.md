@@ -1,54 +1,37 @@
 # Adapters
 
-Adapters bind reusable Agent OS guidance to a specific repository. They describe where the project keeps source, generated output, archive material, project-control files, local commands, and optional evidence integrations.
+Adapters bind reusable Agent OS core guidance to a specific repository. They are the project-local layer that tells an installed Agent OS where the repository keeps source, generated output, archive material, protected surfaces, project-control routing, active tools, validation commands, and optional evidence producers.
 
-An adapter is repository-specific configuration, not core Agent OS meaning. It should let an implementation agent install Agent OS into a project without hard-coding that project's assumptions into core.
+An adapter is repository-specific configuration, not reusable core meaning. It lets an implementation agent install Agent OS into a project without hard-coding that project's paths, decisions, commands, tools, or plugin choices into core.
 
-Adapters should cover:
+## Core Boundary
 
+Core does not know:
+
+- target repository paths;
+- project decisions or architecture authority;
+- actual command names or package scripts;
+- which evidence producers are installed, enabled, or compatible.
+
+Adapters bind those project-local facts into an installation. If an adapter does not declare a route, tool, validation command, or plugin, core should treat that capability as absent rather than inventing one.
+
+## Adapter Responsibilities
+
+An adapter declares:
+
+- repository identity;
 - source groups and their intended use;
 - source policy, including active source, generated surfaces, archive surfaces, and protected surfaces;
-- repository capabilities and local command availability;
-- enabled plugins and evidence producers;
 - project-control routing into local decisions and authority files;
-- validation profile for the target repository.
+- adapter-declared active tools;
+- validation profile for the target repository;
+- enabled, disabled, unavailable, or failed plugins and evidence producers;
+- capability notes and unavailable capability notes.
 
-## Shape Sketch
+See [adapter-contract.md](adapter-contract.md) for the first reusable contract foundation.
 
-This is a sketch, not a final schema:
+## Installation Role
 
-```text
-adapter:
-  id: project-id
-  repo:
-    name: Project Name
-    root: .
-  sourceGroups:
-    - id: app-source
-      paths:
-        - src/
-      role: active-source
-  sourcePolicy:
-    generated:
-      - build/
-      - coverage/
-    archive:
-      - Archive/
-    protected:
-      - Agent OS/
-  capabilities:
-    packageManager: detected-or-none
-    languages:
-      - detected-language
-  evidenceProducers:
-    dependencyCruiser:
-      enabled: false
-      reason: optional-plugin-not-configured
-  projectControl:
-    map: Agent OS/project-control-files/project-setup-map.md
-  validation:
-    commands:
-      - command-name-or-shell-command
-```
+The adapter is installed into a target repository alongside local entry files such as `AGENTS.md`, a project-control route map, and an active tool map. Those installed files route agents to project-local authority and evidence without moving project-specific meaning into reusable core.
 
-The final adapter contract should be defined before multiple project adapters are added. Field Platform's adapter is useful reference material, but its app roots, package layout, generated paths, and validation scripts should not become defaults.
+Field Platform is useful reference material, but its app roots, package layout, generated paths, command names, dependency-boundary tooling, validation scripts, and project decisions must stay Field Platform-specific unless a later extraction task explicitly generalizes them.
