@@ -17,7 +17,15 @@ Core should remain adapter-neutral. It may define how agents ask for context and
 
 ## Initial Subareas
 
-- `agent-attention-system/`: placeholder home for the reusable attention-system maps, task-mode guidance, behaviors, lenses, and skills once they are extracted intentionally.
+- `agent-attention-system/`: home for reusable attention-system maps, task-mode guidance, behaviors, lenses, and skills as they are extracted intentionally.
+
+## Extracted Core Files
+
+- [agent-os-bootloader.md](agent-os-bootloader.md): reusable bootloader for context management, task routing, authority-surface discovery, and scope discipline.
+- [agent-os-execution-instructions.md](agent-os-execution-instructions.md): reusable execution guidance for mode/lens/behavior re-evaluation, evidence use, and compact reporting.
+- [agent-attention-system/agent-attention-system-usage.md](agent-attention-system/agent-attention-system-usage.md): context-loading guidance for selecting only relevant maps, modes, behaviors, lenses, and skills.
+- [review-checklist.md](review-checklist.md): compact before-merge review prompts and completion-summary cues.
+- [agent-attention-system/maps/lens-map.md](agent-attention-system/maps/lens-map.md): reusable lens inventory with paths relative to `agent-attention-system/`.
 
 ## Extraction Planning
 
