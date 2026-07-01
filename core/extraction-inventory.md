@@ -6,6 +6,10 @@ This inventory records the first opinionated extraction plan for reusable Agent 
 
 Field Platform is the reference installation. It demonstrates a working Agent OS installation, but it is not the universal template. The classifications below start from the current Field Platform files, then separate reusable core guidance from adapter-owned project binding and plugin-owned evidence production.
 
+## Extraction Status
+
+As of this extraction branch, the first full attention-system surface has been copied into core: task-mode, behavior, and skill maps; all lenses; all task modes; all structural behaviors; all reusable skills; and `change-impact-checklists.md`. The copied files were neutralized to use adapter-declared project-control routing, adapter-declared active tools, and plugin/evidence-producer outputs instead of Field Platform-local routing, command names, or stack/tool requirements. Field Platform `tool-map.md`, `AGENTS.md`, `project-control-files/**`, and `tools/agent-tools/**` remain out of core.
+
 ## Candidate Reusable Core Files
 
 | Field Platform source path | Proposed Agent-OS destination path | Classification | Reason | Adaptation notes |

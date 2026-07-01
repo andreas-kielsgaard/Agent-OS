@@ -15,6 +15,8 @@ For now, task modes, behaviors, and lenses are treated as core Agent OS material
 
 Core should remain adapter-neutral. It may define how agents ask for context and how they treat evidence, but it should not embed a specific repository's source roots, domain terms, package manager, validation scripts, architecture decisions, or product intent.
 
+The first full attention-system extraction has now brought over reusable maps, task modes, structural behaviors, lenses, reasoning skills, and the change-impact checklist with adapter-neutral evidence and project-control wording.
+
 ## Initial Subareas
 
 - `agent-attention-system/`: home for reusable attention-system maps, task-mode guidance, behaviors, lenses, and skills as they are extracted intentionally.
@@ -26,6 +28,10 @@ Core should remain adapter-neutral. It may define how agents ask for context and
 - [agent-attention-system/agent-attention-system-usage.md](agent-attention-system/agent-attention-system-usage.md): context-loading guidance for selecting only relevant maps, modes, behaviors, lenses, and skills.
 - [review-checklist.md](review-checklist.md): compact before-merge review prompts and completion-summary cues.
 - [agent-attention-system/maps/lens-map.md](agent-attention-system/maps/lens-map.md): reusable lens inventory with paths relative to `agent-attention-system/`.
+- [agent-attention-system/maps/task-mode-map.md](agent-attention-system/maps/task-mode-map.md), [behavior-map.md](agent-attention-system/maps/behavior-map.md), and [skill-map.md](agent-attention-system/maps/skill-map.md): reusable routing maps for modes, behaviors, and skills.
+- `agent-attention-system/lenses/`, `agent-attention-system/task-modes/`, and `agent-attention-system/behavior/`: extracted reusable attention guidance.
+- [skills/](skills/): extracted reusable reasoning workflows.
+- [change-impact-checklists.md](change-impact-checklists.md): compact impact prompts for recurring software change families.
 
 ## Extraction Planning
 
