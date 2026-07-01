@@ -18,3 +18,7 @@ Core should remain adapter-neutral. It may define how agents ask for context and
 ## Initial Subareas
 
 - `agent-attention-system/`: placeholder home for the reusable attention-system maps, task-mode guidance, behaviors, lenses, and skills once they are extracted intentionally.
+
+## Extraction Planning
+
+- `extraction-inventory.md`: current opinionated inventory for which Field Platform Agent OS files should be copied mostly as-is, adapted before copy, or deferred.
