@@ -32,6 +32,8 @@ See [adapter-contract.md](adapter-contract.md) for the first reusable contract f
 
 ## Installation Role
 
-The adapter is installed into a target repository alongside local entry files such as `AGENTS.md`, a project-control route map, and an active tool map. Those installed files route agents to project-local authority and evidence without moving project-specific meaning into reusable core.
+The adapter is installed into a target repository alongside local entry files such as `AGENTS.md`, a project-control route map, an active tool map, and install state. In the default pinned layout, reusable Agent OS content is consumed from `.agent-os/upstream/` as read-only upstream-owned content, while target-specific adapter files live under `.agent-os/adapter/`.
+
+Those installed files route agents to project-local authority and evidence without moving project-specific meaning into reusable core or editing consumed upstream files.
 
 Field Platform is useful reference material, but its app roots, package layout, generated paths, command names, dependency-boundary tooling, validation scripts, and project decisions must stay Field Platform-specific unless a later extraction task explicitly generalizes them.

@@ -4,6 +4,8 @@ Dependency-boundary is the first generic Agent OS plugin example. It describes a
 
 This example is not dependency-cruiser-specific. It does not require JavaScript, TypeScript, pnpm, monorepos, dependency-cruiser, or any specific dependency graph implementation.
 
+In a pinned installation, this example may be read from `.agent-os/upstream/`, but the target adapter decides whether dependency-boundary evidence is enabled, disabled, unavailable, or failed for that repository.
+
 ## Purpose
 
 A dependency-boundary evidence producer can help agents inspect questions such as:
@@ -27,6 +29,8 @@ A repository might implement dependency-boundary evidence with:
 - source/config reads performed without a dedicated tool.
 
 The adapter should declare the actual provider and route for the installed repository.
+
+If this upstream example or a configured dependency-boundary provider is missing, agents should report dependency-boundary evidence as unavailable unless the adapter declares another local provider.
 
 ## Expected States
 

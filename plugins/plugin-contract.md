@@ -22,6 +22,8 @@ A plugin should declare:
 
 Adapters own repository-specific enablement. A plugin being available in the reusable Agent OS repository does not mean it is enabled or compatible with every installed repository.
 
+In a pinned installation, reusable plugin contracts or examples may be read from `.agent-os/upstream/`, but target-specific plugin enablement belongs in `.agent-os/adapter/`. Agents should not edit upstream plugin files to enable, disable, or configure a plugin for one target repository.
+
 An adapter should declare whether a plugin capability is:
 
 - enabled and usable for the repository;
@@ -30,6 +32,8 @@ An adapter should declare whether a plugin capability is:
 - failed during execution or validation.
 
 If an adapter does not declare a plugin route, agents should treat that plugin capability as absent.
+
+If expected upstream plugin content is missing from the pinned snapshot, agents should report that capability as unavailable unless the adapter declares another local provider.
 
 ## Active Tools
 

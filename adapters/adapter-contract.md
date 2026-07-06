@@ -9,6 +9,7 @@ An adapter is the project-local binding between reusable Agent OS core and one i
 An adapter should declare:
 
 - repository identity;
+- installed upstream and adapter paths;
 - source groups;
 - source policy;
 - generated, archive, and protected surfaces;
@@ -31,6 +32,16 @@ adapter:
     remote: origin-or-none
     defaultBranch: main-or-local-default
 
+  installation:
+    upstream:
+      path: .agent-os/upstream/
+      pin: recorded in .agent-os/adapter/install-state.md
+      ownership: upstream-owned read-only snapshot
+      unavailableBehavior: check install state; report missing upstream content when it cannot be restored
+    adapter:
+      path: .agent-os/adapter/
+      ownership: target-owned binding layer
+
   sourceGroups:
     - id: active-source
       paths:
@@ -48,18 +59,20 @@ adapter:
       - path: archive/
         treatment: historical-context
     protected:
-      - path: <installed-agent-os-path>/
-        rule: edit only during explicit Agent OS maintenance
+      - path: .agent-os/upstream/
+        rule: read-only upstream Agent OS snapshot; update only through explicit pin maintenance
+      - path: .agent-os/adapter/
+        rule: edit only during explicit Agent OS install or adapter maintenance
 
   projectControl:
-    map: <installed-agent-os-path>/project-control/project-setup-map.md
+    map: .agent-os/adapter/project-setup-map.md
     routes:
       projectDecisions: <project-decisions-path-or-none>
       architectureDocs: <architecture-docs-path-or-none>
       localPolicies: <policy-path-or-none>
       schemaConfigAuthority: <source-or-config-authority-paths>
-      installState: <install-state-path-or-none>
-      localToolMap: <installed-agent-os-path>/project-control/tool-map.md
+      installState: .agent-os/adapter/install-state.md
+      localToolMap: .agent-os/adapter/tool-map.md
 
   activeTools:
     - id: affected-surface
@@ -114,6 +127,14 @@ Logical IDs should describe the evidence need rather than universal command name
 - `context-bundle` evidence.
 
 No Field Platform command, package script, dependency graph tool, or context command is universal. If a repository cannot support an active tool, the adapter should say so explicitly and describe the fallback behavior.
+
+## Pinned Upstream Consumption
+
+When Agent OS is consumed from a pinned snapshot, the adapter is the target-owned binding between that snapshot and the installed repository.
+
+The default upstream snapshot path is `.agent-os/upstream/`. It may be a submodule, vendored copy, generated copy, archived snapshot, or another repository-approved delivery mechanism. Regardless of mechanism, upstream content is read-only from the target repository. Target-specific changes should be made in `.agent-os/adapter/` or other target-owned authority surfaces, not by editing `.agent-os/upstream/**`.
+
+The adapter should either declare the installed paths directly or route agents to install state that records them. If the upstream snapshot is missing, partial, or unavailable, the adapter should tell agents where to find restoration guidance or how to report the missing capability. Agents should not replace a missing pin with remote `HEAD` or a copy from another target repository.
 
 ## Project-Control Routing
 

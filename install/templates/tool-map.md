@@ -1,6 +1,10 @@
 # Active Tool Map
 
-This is a local active-tool router for an installed Agent OS. Tools produce bounded evidence for agent reasoning. They do not decide semantic authority, ownership, product intent, architecture quality, or whether a change is correct.
+This is a target-owned active-tool router for an installed Agent OS. It should usually live at `.agent-os/adapter/tool-map.md`.
+
+Tools produce bounded evidence for agent reasoning. They do not decide semantic authority, ownership, product intent, architecture quality, or whether a change is correct.
+
+Tool routes may reference target-repository commands, target-owned scripts, service integrations, or plugins available through the pinned upstream snapshot. They should not require agents to edit `.agent-os/upstream/**`; local enablement, invocation details, and unavailable behavior belong in this map or the adapter.
 
 | Logical Tool ID | Command Or Callable | Use | Expected Evidence | Limitations | Disabled Or Unavailable Behavior | Validation Check |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -12,3 +16,5 @@ This is a local active-tool router for an installed Agent OS. Tools produce boun
 | `context-bundle` | `<command-or-callable>` | Gather a bounded context bundle for a task. | Bounded context-bundle evidence. | `<known-limits>` | Report unavailable; use selected source reads and search. | `<check-or-none>` |
 
 Add, remove, or rename logical IDs to match the adapter. Do not make a command universal merely because it exists in another repository.
+
+If an upstream plugin or evidence-producer contract is missing from `.agent-os/upstream/`, report that capability as unavailable unless the adapter declares another local provider.

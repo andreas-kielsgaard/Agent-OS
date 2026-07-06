@@ -6,6 +6,8 @@ An evidence producer is a bounded capability that observes a repository, configu
 
 Evidence producers may live inside plugins, project-local tools, adapter-declared commands, or service integrations. They can support decisions, but they do not make those decisions.
 
+In a pinned Agent OS installation, reusable evidence-producer contracts may be consumed from `.agent-os/upstream/`, while target-specific routes and enablement live in `.agent-os/adapter/`. A target repository should not edit upstream evidence-producer contracts to fit local commands or source shape.
+
 ## Evidence Principles
 
 Evidence is bounded. Every evidence producer observes only the inputs, time, configuration, and capability surface declared by its contract.
@@ -26,6 +28,8 @@ Evidence producers should report one of these states:
 - `failed`: the evidence producer was expected to run but execution, parsing, validation, or retrieval failed.
 
 A `disabled`, `unavailable`, or `failed` state is itself useful context. Agents should report the limit honestly and fall back to source/config reads or standard project checks when possible.
+
+Missing upstream contract content should be treated as `unavailable` unless the adapter declares another local contract or provider.
 
 ## Expected Metadata
 
